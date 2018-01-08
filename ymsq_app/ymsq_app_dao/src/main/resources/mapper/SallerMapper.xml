@@ -1,0 +1,583 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.app.ymsq.dao.saller.SallerDao" >
+  <resultMap id="BaseResultMap" type="com.app.ymsq.model.saller.Saller" >
+    <id column="seller_id" property="sellerId" jdbcType="INTEGER" />
+    <result column="seller_no" property="sellerNo" jdbcType="VARCHAR" />
+    <result column="seller_name" property="sellerName" jdbcType="VARCHAR" />
+    <result column="seller_type" property="sellerType" jdbcType="TINYINT" />
+    <result column="seller_province" property="sellerProvince" jdbcType="VARCHAR" />
+    <result column="seller_city" property="sellerCity" jdbcType="VARCHAR" />
+    <result column="seller_area" property="sellerArea" jdbcType="VARCHAR" />
+    <result column="seller_street" property="sellerStreet" jdbcType="VARCHAR" />
+    <result column="seller_village" property="sellerVillage" jdbcType="VARCHAR" />
+    <result column="seller_address" property="sellerAddress" jdbcType="VARCHAR" />
+    <result column="seller_phone" property="sellerPhone" jdbcType="VARCHAR" />
+    <result column="person_name" property="personName" jdbcType="VARCHAR" />
+    <result column="person_phone" property="personPhone" jdbcType="VARCHAR" />
+    <result column="person_email" property="personEmail" jdbcType="VARCHAR" />
+    <result column="seller_licence" property="sellerLicence" jdbcType="VARCHAR" />
+    <result column="seller_licenceDate" property="sellerLicencedate" jdbcType="TIMESTAMP" />
+    <result column="seller_licence_deadLine" property="sellerLicenceDeadline" jdbcType="TIMESTAMP" />
+    <result column="seller_licence_photo" property="sellerLicencePhoto" jdbcType="VARCHAR" />
+    <result column="personIdcard_photo" property="personidcardPhoto" jdbcType="VARCHAR" />
+    <result column="seller_commit_time" property="sellerCommitTime" jdbcType="TIMESTAMP" />
+    <result column="seller_pass_time" property="sellerPassTime" jdbcType="TIMESTAMP" />
+    <result column="status" property="status" jdbcType="TINYINT" />
+    <result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+    <result column="modify_date" property="modifyDate" jdbcType="TIMESTAMP" />
+    <result column="del_date" property="delDate" jdbcType="TIMESTAMP" />
+    <result column="add_operator_id" property="addOperatorId" jdbcType="INTEGER" />
+    <result column="modi_operator_id" property="modiOperatorId" jdbcType="INTEGER" />
+    <result column="del_operator_id" property="delOperatorId" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    <if test="fields == null" >
+      seller_id, seller_no, seller_name, seller_type, seller_province, seller_city, seller_area, 
+      seller_street, seller_village, seller_address, seller_phone, person_name, person_phone, 
+      person_email, seller_licence, seller_licenceDate, seller_licence_deadLine, seller_licence_photo, 
+      personIdcard_photo, seller_commit_time, seller_pass_time, status, create_date, modify_date, 
+      del_date, add_operator_id, modi_operator_id, del_operator_id
+    </if>
+    <if test="fields != null" >
+      ${fields}
+    </if>
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.app.ymsq.model.saller.SallerQuery" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from ymsq_seller
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    seller_id,seller_no,seller_name,seller_type,seller_province,seller_city,seller_area,seller_street,seller_village,seller_address,seller_phone,person_name,person_phone,person_email,seller_licence,seller_licenceDate,seller_licence_deadLine,seller_licence_photo,personIdcard_photo,seller_commit_time,seller_pass_time,status,create_date,modify_date,del_date,add_operator_id,modi_operator_id,del_operator_id
+    from ymsq_seller
+    where seller_id = #{sellerId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from ymsq_seller
+    where seller_id = #{sellerId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.app.ymsq.model.saller.SallerQuery" >
+    delete from ymsq_seller
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.app.ymsq.model.saller.Saller" >
+    insert into ymsq_seller (seller_id, seller_no, seller_name, 
+      seller_type, seller_province, seller_city, 
+      seller_area, seller_street, seller_village, 
+      seller_address, seller_phone, person_name, 
+      person_phone, person_email, seller_licence, 
+      seller_licenceDate, seller_licence_deadLine, 
+      seller_licence_photo, personIdcard_photo, 
+      seller_commit_time, seller_pass_time, status, 
+      create_date, modify_date, del_date, 
+      add_operator_id, modi_operator_id, del_operator_id
+      )
+    values (#{sellerId,jdbcType=INTEGER}, #{sellerNo,jdbcType=VARCHAR}, #{sellerName,jdbcType=VARCHAR}, 
+      #{sellerType,jdbcType=TINYINT}, #{sellerProvince,jdbcType=VARCHAR}, #{sellerCity,jdbcType=VARCHAR}, 
+      #{sellerArea,jdbcType=VARCHAR}, #{sellerStreet,jdbcType=VARCHAR}, #{sellerVillage,jdbcType=VARCHAR}, 
+      #{sellerAddress,jdbcType=VARCHAR}, #{sellerPhone,jdbcType=VARCHAR}, #{personName,jdbcType=VARCHAR}, 
+      #{personPhone,jdbcType=VARCHAR}, #{personEmail,jdbcType=VARCHAR}, #{sellerLicence,jdbcType=VARCHAR}, 
+      #{sellerLicencedate,jdbcType=TIMESTAMP}, #{sellerLicenceDeadline,jdbcType=TIMESTAMP}, 
+      #{sellerLicencePhoto,jdbcType=VARCHAR}, #{personidcardPhoto,jdbcType=VARCHAR}, 
+      #{sellerCommitTime,jdbcType=TIMESTAMP}, #{sellerPassTime,jdbcType=TIMESTAMP}, #{status,jdbcType=TINYINT}, 
+      #{createDate,jdbcType=TIMESTAMP}, #{modifyDate,jdbcType=TIMESTAMP}, #{delDate,jdbcType=TIMESTAMP}, 
+      #{addOperatorId,jdbcType=INTEGER}, #{modiOperatorId,jdbcType=INTEGER}, #{delOperatorId,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.app.ymsq.model.saller.Saller" >
+    insert into ymsq_seller
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="sellerId != null" >
+        seller_id,
+      </if>
+      <if test="sellerNo != null" >
+        seller_no,
+      </if>
+      <if test="sellerName != null" >
+        seller_name,
+      </if>
+      <if test="sellerType != null" >
+        seller_type,
+      </if>
+      <if test="sellerProvince != null" >
+        seller_province,
+      </if>
+      <if test="sellerCity != null" >
+        seller_city,
+      </if>
+      <if test="sellerArea != null" >
+        seller_area,
+      </if>
+      <if test="sellerStreet != null" >
+        seller_street,
+      </if>
+      <if test="sellerVillage != null" >
+        seller_village,
+      </if>
+      <if test="sellerAddress != null" >
+        seller_address,
+      </if>
+      <if test="sellerPhone != null" >
+        seller_phone,
+      </if>
+      <if test="personName != null" >
+        person_name,
+      </if>
+      <if test="personPhone != null" >
+        person_phone,
+      </if>
+      <if test="personEmail != null" >
+        person_email,
+      </if>
+      <if test="sellerLicence != null" >
+        seller_licence,
+      </if>
+      <if test="sellerLicencedate != null" >
+        seller_licenceDate,
+      </if>
+      <if test="sellerLicenceDeadline != null" >
+        seller_licence_deadLine,
+      </if>
+      <if test="sellerLicencePhoto != null" >
+        seller_licence_photo,
+      </if>
+      <if test="personidcardPhoto != null" >
+        personIdcard_photo,
+      </if>
+      <if test="sellerCommitTime != null" >
+        seller_commit_time,
+      </if>
+      <if test="sellerPassTime != null" >
+        seller_pass_time,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="createDate != null" >
+        create_date,
+      </if>
+      <if test="modifyDate != null" >
+        modify_date,
+      </if>
+      <if test="delDate != null" >
+        del_date,
+      </if>
+      <if test="addOperatorId != null" >
+        add_operator_id,
+      </if>
+      <if test="modiOperatorId != null" >
+        modi_operator_id,
+      </if>
+      <if test="delOperatorId != null" >
+        del_operator_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="sellerId != null" >
+        #{sellerId,jdbcType=INTEGER},
+      </if>
+      <if test="sellerNo != null" >
+        #{sellerNo,jdbcType=VARCHAR},
+      </if>
+      <if test="sellerName != null" >
+        #{sellerName,jdbcType=VARCHAR},
+      </if>
+      <if test="sellerType != null" >
+        #{sellerType,jdbcType=TINYINT},
+      </if>
+      <if test="sellerProvince != null" >
+        #{sellerProvince,jdbcType=VARCHAR},
+      </if>
+      <if test="sellerCity != null" >
+        #{sellerCity,jdbcType=VARCHAR},
+      </if>
+      <if test="sellerArea != null" >
+        #{sellerArea,jdbcType=VARCHAR},
+      </if>
+      <if test="sellerStreet != null" >
+        #{sellerStreet,jdbcType=VARCHAR},
+      </if>
+      <if test="sellerVillage != null" >
+        #{sellerVillage,jdbcType=VARCHAR},
+      </if>
+      <if test="sellerAddress != null" >
+        #{sellerAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="sellerPhone != null" >
+        #{sellerPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="personName != null" >
+        #{personName,jdbcType=VARCHAR},
+      </if>
+      <if test="personPhone != null" >
+        #{personPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="personEmail != null" >
+        #{personEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="sellerLicence != null" >
+        #{sellerLicence,jdbcType=VARCHAR},
+      </if>
+      <if test="sellerLicencedate != null" >
+        #{sellerLicencedate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sellerLicenceDeadline != null" >
+        #{sellerLicenceDeadline,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sellerLicencePhoto != null" >
+        #{sellerLicencePhoto,jdbcType=VARCHAR},
+      </if>
+      <if test="personidcardPhoto != null" >
+        #{personidcardPhoto,jdbcType=VARCHAR},
+      </if>
+      <if test="sellerCommitTime != null" >
+        #{sellerCommitTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sellerPassTime != null" >
+        #{sellerPassTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=TINYINT},
+      </if>
+      <if test="createDate != null" >
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyDate != null" >
+        #{modifyDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="delDate != null" >
+        #{delDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="addOperatorId != null" >
+        #{addOperatorId,jdbcType=INTEGER},
+      </if>
+      <if test="modiOperatorId != null" >
+        #{modiOperatorId,jdbcType=INTEGER},
+      </if>
+      <if test="delOperatorId != null" >
+        #{delOperatorId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.app.ymsq.model.saller.SallerQuery" resultType="java.lang.Integer" >
+    select count(*) from ymsq_seller
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update ymsq_seller
+    <set >
+      <if test="record.sellerId != null" >
+        seller_id = #{record.sellerId,jdbcType=INTEGER},
+      </if>
+      <if test="record.sellerNo != null" >
+        seller_no = #{record.sellerNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sellerName != null" >
+        seller_name = #{record.sellerName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sellerType != null" >
+        seller_type = #{record.sellerType,jdbcType=TINYINT},
+      </if>
+      <if test="record.sellerProvince != null" >
+        seller_province = #{record.sellerProvince,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sellerCity != null" >
+        seller_city = #{record.sellerCity,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sellerArea != null" >
+        seller_area = #{record.sellerArea,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sellerStreet != null" >
+        seller_street = #{record.sellerStreet,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sellerVillage != null" >
+        seller_village = #{record.sellerVillage,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sellerAddress != null" >
+        seller_address = #{record.sellerAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sellerPhone != null" >
+        seller_phone = #{record.sellerPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.personName != null" >
+        person_name = #{record.personName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.personPhone != null" >
+        person_phone = #{record.personPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.personEmail != null" >
+        person_email = #{record.personEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sellerLicence != null" >
+        seller_licence = #{record.sellerLicence,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sellerLicencedate != null" >
+        seller_licenceDate = #{record.sellerLicencedate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.sellerLicenceDeadline != null" >
+        seller_licence_deadLine = #{record.sellerLicenceDeadline,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.sellerLicencePhoto != null" >
+        seller_licence_photo = #{record.sellerLicencePhoto,jdbcType=VARCHAR},
+      </if>
+      <if test="record.personidcardPhoto != null" >
+        personIdcard_photo = #{record.personidcardPhoto,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sellerCommitTime != null" >
+        seller_commit_time = #{record.sellerCommitTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.sellerPassTime != null" >
+        seller_pass_time = #{record.sellerPassTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.status != null" >
+        status = #{record.status,jdbcType=TINYINT},
+      </if>
+      <if test="record.createDate != null" >
+        create_date = #{record.createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.modifyDate != null" >
+        modify_date = #{record.modifyDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.delDate != null" >
+        del_date = #{record.delDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.addOperatorId != null" >
+        add_operator_id = #{record.addOperatorId,jdbcType=INTEGER},
+      </if>
+      <if test="record.modiOperatorId != null" >
+        modi_operator_id = #{record.modiOperatorId,jdbcType=INTEGER},
+      </if>
+      <if test="record.delOperatorId != null" >
+        del_operator_id = #{record.delOperatorId,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update ymsq_seller
+    set seller_id = #{record.sellerId,jdbcType=INTEGER},
+      seller_no = #{record.sellerNo,jdbcType=VARCHAR},
+      seller_name = #{record.sellerName,jdbcType=VARCHAR},
+      seller_type = #{record.sellerType,jdbcType=TINYINT},
+      seller_province = #{record.sellerProvince,jdbcType=VARCHAR},
+      seller_city = #{record.sellerCity,jdbcType=VARCHAR},
+      seller_area = #{record.sellerArea,jdbcType=VARCHAR},
+      seller_street = #{record.sellerStreet,jdbcType=VARCHAR},
+      seller_village = #{record.sellerVillage,jdbcType=VARCHAR},
+      seller_address = #{record.sellerAddress,jdbcType=VARCHAR},
+      seller_phone = #{record.sellerPhone,jdbcType=VARCHAR},
+      person_name = #{record.personName,jdbcType=VARCHAR},
+      person_phone = #{record.personPhone,jdbcType=VARCHAR},
+      person_email = #{record.personEmail,jdbcType=VARCHAR},
+      seller_licence = #{record.sellerLicence,jdbcType=VARCHAR},
+      seller_licenceDate = #{record.sellerLicencedate,jdbcType=TIMESTAMP},
+      seller_licence_deadLine = #{record.sellerLicenceDeadline,jdbcType=TIMESTAMP},
+      seller_licence_photo = #{record.sellerLicencePhoto,jdbcType=VARCHAR},
+      personIdcard_photo = #{record.personidcardPhoto,jdbcType=VARCHAR},
+      seller_commit_time = #{record.sellerCommitTime,jdbcType=TIMESTAMP},
+      seller_pass_time = #{record.sellerPassTime,jdbcType=TIMESTAMP},
+      status = #{record.status,jdbcType=TINYINT},
+      create_date = #{record.createDate,jdbcType=TIMESTAMP},
+      modify_date = #{record.modifyDate,jdbcType=TIMESTAMP},
+      del_date = #{record.delDate,jdbcType=TIMESTAMP},
+      add_operator_id = #{record.addOperatorId,jdbcType=INTEGER},
+      modi_operator_id = #{record.modiOperatorId,jdbcType=INTEGER},
+      del_operator_id = #{record.delOperatorId,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.app.ymsq.model.saller.Saller" >
+    update ymsq_seller
+    <set >
+      <if test="sellerNo != null" >
+        seller_no = #{sellerNo,jdbcType=VARCHAR},
+      </if>
+      <if test="sellerName != null" >
+        seller_name = #{sellerName,jdbcType=VARCHAR},
+      </if>
+      <if test="sellerType != null" >
+        seller_type = #{sellerType,jdbcType=TINYINT},
+      </if>
+      <if test="sellerProvince != null" >
+        seller_province = #{sellerProvince,jdbcType=VARCHAR},
+      </if>
+      <if test="sellerCity != null" >
+        seller_city = #{sellerCity,jdbcType=VARCHAR},
+      </if>
+      <if test="sellerArea != null" >
+        seller_area = #{sellerArea,jdbcType=VARCHAR},
+      </if>
+      <if test="sellerStreet != null" >
+        seller_street = #{sellerStreet,jdbcType=VARCHAR},
+      </if>
+      <if test="sellerVillage != null" >
+        seller_village = #{sellerVillage,jdbcType=VARCHAR},
+      </if>
+      <if test="sellerAddress != null" >
+        seller_address = #{sellerAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="sellerPhone != null" >
+        seller_phone = #{sellerPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="personName != null" >
+        person_name = #{personName,jdbcType=VARCHAR},
+      </if>
+      <if test="personPhone != null" >
+        person_phone = #{personPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="personEmail != null" >
+        person_email = #{personEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="sellerLicence != null" >
+        seller_licence = #{sellerLicence,jdbcType=VARCHAR},
+      </if>
+      <if test="sellerLicencedate != null" >
+        seller_licenceDate = #{sellerLicencedate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sellerLicenceDeadline != null" >
+        seller_licence_deadLine = #{sellerLicenceDeadline,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sellerLicencePhoto != null" >
+        seller_licence_photo = #{sellerLicencePhoto,jdbcType=VARCHAR},
+      </if>
+      <if test="personidcardPhoto != null" >
+        personIdcard_photo = #{personidcardPhoto,jdbcType=VARCHAR},
+      </if>
+      <if test="sellerCommitTime != null" >
+        seller_commit_time = #{sellerCommitTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sellerPassTime != null" >
+        seller_pass_time = #{sellerPassTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=TINYINT},
+      </if>
+      <if test="createDate != null" >
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyDate != null" >
+        modify_date = #{modifyDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="delDate != null" >
+        del_date = #{delDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="addOperatorId != null" >
+        add_operator_id = #{addOperatorId,jdbcType=INTEGER},
+      </if>
+      <if test="modiOperatorId != null" >
+        modi_operator_id = #{modiOperatorId,jdbcType=INTEGER},
+      </if>
+      <if test="delOperatorId != null" >
+        del_operator_id = #{delOperatorId,jdbcType=INTEGER},
+      </if>
+    </set>
+    where seller_id = #{sellerId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.app.ymsq.model.saller.Saller" >
+    update ymsq_seller
+    set seller_no = #{sellerNo,jdbcType=VARCHAR},
+      seller_name = #{sellerName,jdbcType=VARCHAR},
+      seller_type = #{sellerType,jdbcType=TINYINT},
+      seller_province = #{sellerProvince,jdbcType=VARCHAR},
+      seller_city = #{sellerCity,jdbcType=VARCHAR},
+      seller_area = #{sellerArea,jdbcType=VARCHAR},
+      seller_street = #{sellerStreet,jdbcType=VARCHAR},
+      seller_village = #{sellerVillage,jdbcType=VARCHAR},
+      seller_address = #{sellerAddress,jdbcType=VARCHAR},
+      seller_phone = #{sellerPhone,jdbcType=VARCHAR},
+      person_name = #{personName,jdbcType=VARCHAR},
+      person_phone = #{personPhone,jdbcType=VARCHAR},
+      person_email = #{personEmail,jdbcType=VARCHAR},
+      seller_licence = #{sellerLicence,jdbcType=VARCHAR},
+      seller_licenceDate = #{sellerLicencedate,jdbcType=TIMESTAMP},
+      seller_licence_deadLine = #{sellerLicenceDeadline,jdbcType=TIMESTAMP},
+      seller_licence_photo = #{sellerLicencePhoto,jdbcType=VARCHAR},
+      personIdcard_photo = #{personidcardPhoto,jdbcType=VARCHAR},
+      seller_commit_time = #{sellerCommitTime,jdbcType=TIMESTAMP},
+      seller_pass_time = #{sellerPassTime,jdbcType=TIMESTAMP},
+      status = #{status,jdbcType=TINYINT},
+      create_date = #{createDate,jdbcType=TIMESTAMP},
+      modify_date = #{modifyDate,jdbcType=TIMESTAMP},
+      del_date = #{delDate,jdbcType=TIMESTAMP},
+      add_operator_id = #{addOperatorId,jdbcType=INTEGER},
+      modi_operator_id = #{modiOperatorId,jdbcType=INTEGER},
+      del_operator_id = #{delOperatorId,jdbcType=INTEGER}
+    where seller_id = #{sellerId,jdbcType=INTEGER}
+  </update>
+</mapper>
