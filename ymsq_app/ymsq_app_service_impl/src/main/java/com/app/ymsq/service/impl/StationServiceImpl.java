@@ -5,10 +5,12 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.app.ymsq.dao.saller.DeliverPriceDao;
 import com.app.ymsq.dao.saller.SallerDao;
 import com.app.ymsq.dao.saller.StationOrderDao;
 import com.app.ymsq.dao.saller.StationUserDao;
 import com.app.ymsq.dto.saller.StationUserDTO;
+import com.app.ymsq.model.saller.DeliverPrice;
 import com.app.ymsq.model.saller.Saller;
 import com.app.ymsq.model.saller.StationUser;
 import com.app.ymsq.model.saller.StationUserQuery;
@@ -24,6 +26,8 @@ public class StationServiceImpl implements StationService{
 	private StationUserDao stationUserDao;
 	@Autowired
 	private StationOrderDao stationOrderDao;
+	@Autowired
+	private DeliverPriceDao deliverPriceDao;
 	
 	
 	@Override
@@ -38,6 +42,13 @@ public class StationServiceImpl implements StationService{
 			return null;
 		}
 		return sallerDao.selectByPrimaryKey(list.get(0).getSellerId());
+	}
+
+
+	@Override
+	public Boolean sentPriceAdd(List<DeliverPrice> list) throws Exception {
+		// TODO Auto-generated method stub
+		return deliverPriceDao.addBatch(list)>0?true:false;
 	}
 
 }

@@ -1,7 +1,10 @@
 package com.app.ymsq.controller;
 
+import java.util.List;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -11,7 +14,9 @@ import com.app.ymsq.constant.Auth;
 import com.app.ymsq.constant.BaseResp;
 import com.app.ymsq.constant.ErrCode;
 import com.app.ymsq.dto.saller.StationUserDTO;
+import com.app.ymsq.model.saller.DeliverPrice;
 import com.app.ymsq.model.saller.Saller;
+import com.app.ymsq.service.StationService;
 import com.app.ymsq.util.StringUtil;
 
 import io.swagger.annotations.Api;
@@ -27,18 +32,21 @@ public class MerchantStationController {
 	
 	private BaseResp baseResp = new BaseResp<>(ErrCode.SUCCESS,"success");
 	
+	@Autowired
+	private StationService stationService;
+	
 	@Auth
 	@RequestMapping(value = "price/get/add", method = RequestMethod.GET)
 	@ApiOperation(value = "取件价格发布", notes = "王波")
 	@ResponseBody
-	public BaseResp add( ) {
+	public BaseResp add(List<DeliverPrice> list ) {
 //		logger.info("# method : getStationInfo() [req]: " + dto.toString());
 //		if (StringUtil.isNull(dto)) {
 //			logger.warn("# getStationInfo() : dto is null");
 //			return new BaseResp<>(ErrCode.VALIDATE_FAILED, "dto is null");
 //		}
 		try {
-			
+			stationService.sentPriceAdd(list);
 		} catch (Exception e) {
 			logger.error("获取小站信息异常:{}", e);
 			baseResp = new BaseResp<>(ErrCode.ACCESS_DB_FAILED, "服务器异常");
@@ -50,14 +58,14 @@ public class MerchantStationController {
 	@RequestMapping(value = "price/send/add", method = RequestMethod.GET)
 	@ApiOperation(value = "寄件价格发布", notes = "王波")
 	@ResponseBody
-	public BaseResp getStationInfo(StationUserDTO dto) {
-		logger.info("# method : getStationInfo() [req]: " + dto.toString());
-		if (StringUtil.isNull(dto)) {
-			logger.warn("# getStationInfo() : dto is null");
-			return new BaseResp<>(ErrCode.VALIDATE_FAILED, "dto is null");
-		}
+	public BaseResp getStationInfo(List<DeliverPrice> list) {
+//		logger.info("# method : getStationInfo() [req]: " + dto.toString());
+//		if (StringUtil.isNull(dto)) {
+//			logger.warn("# getStationInfo() : dto is null");
+//			return new BaseResp<>(ErrCode.VALIDATE_FAILED, "dto is null");
+//		}
 		try {
-			
+			stationService.sentPriceAdd(list);
 		} catch (Exception e) {
 			logger.error("获取小站信息异常:{}", e);
 			baseResp = new BaseResp<>(ErrCode.ACCESS_DB_FAILED, "服务器异常");

@@ -75,6 +75,11 @@ public class DeliverPrice implements Serializable {
      */
     private Byte status;
 
+    /**
+     * 快递公司
+     */
+    private String company;
+
     private static final long serialVersionUID = 1L;
 
     public Long getId() {
@@ -189,6 +194,14 @@ public class DeliverPrice implements Serializable {
         this.status = status;
     }
 
+    public String getCompany() {
+        return company;
+    }
+
+    public void setCompany(String company) {
+        this.company = company == null ? null : company.trim();
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -209,6 +222,7 @@ public class DeliverPrice implements Serializable {
         sb.append(", modiOperatorId=").append(modiOperatorId);
         sb.append(", delOperatorId=").append(delOperatorId);
         sb.append(", status=").append(status);
+        sb.append(", company=").append(company);
         sb.append(", serialVersionUID=").append(serialVersionUID);
         sb.append("]");
         return sb.toString();

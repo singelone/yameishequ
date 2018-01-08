@@ -16,6 +16,7 @@
     <result column="modi_operator_id" property="modiOperatorId" jdbcType="BIGINT" />
     <result column="del_operator_id" property="delOperatorId" jdbcType="BIGINT" />
     <result column="status" property="status" jdbcType="TINYINT" />
+    <result column="company" property="company" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -78,7 +79,8 @@
   <sql id="Base_Column_List" >
     <if test="fields == null" >
       id, seller_no, address, container_no, address_range, weight_range, price, create_time, 
-      modify_time, del_time, add_operator_id, modi_operator_id, del_operator_id, status
+      modify_time, del_time, add_operator_id, modi_operator_id, del_operator_id, status, 
+      company
     </if>
     <if test="fields != null" >
       ${fields}
@@ -100,7 +102,7 @@
   </select>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
     select 
-    id,seller_no,address,container_no,address_range,weight_range,price,create_time,modify_time,del_time,add_operator_id,modi_operator_id,del_operator_id,status
+    id,seller_no,address,container_no,address_range,weight_range,price,create_time,modify_time,del_time,add_operator_id,modi_operator_id,del_operator_id,status,company
     from ymsq_deliver_price
     where id = #{id,jdbcType=BIGINT}
   </select>
@@ -119,12 +121,30 @@
       container_no, address_range, weight_range, 
       price, create_time, modify_time, 
       del_time, add_operator_id, modi_operator_id, 
-      del_operator_id, status)
+      del_operator_id, status, company
+      )
     values (#{id,jdbcType=BIGINT}, #{sellerNo,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, 
       #{containerNo,jdbcType=VARCHAR}, #{addressRange,jdbcType=VARCHAR}, #{weightRange,jdbcType=VARCHAR}, 
       #{price,jdbcType=DECIMAL}, #{createTime,jdbcType=TIMESTAMP}, #{modifyTime,jdbcType=TIMESTAMP}, 
       #{delTime,jdbcType=TIMESTAMP}, #{addOperatorId,jdbcType=BIGINT}, #{modiOperatorId,jdbcType=BIGINT}, 
-      #{delOperatorId,jdbcType=BIGINT}, #{status,jdbcType=TINYINT})
+      #{delOperatorId,jdbcType=BIGINT}, #{status,jdbcType=TINYINT}, #{company,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="addBatch" parameterType="java.util.List" >
+    insert into ymsq_deliver_price (id, seller_no, address, 
+      container_no, address_range, weight_range, 
+      price, create_time, modify_time, 
+      del_time, add_operator_id, modi_operator_id, 
+      del_operator_id, status, company
+      ) values
+      <foreach collection="list" item="item" index="index" separator=",">
+	    (#{item.id,jdbcType=BIGINT}, #{item.sellerNo,jdbcType=VARCHAR}, #{item.address,jdbcType=VARCHAR}, 
+	      #{item.containerNo,jdbcType=VARCHAR}, #{item.addressRange,jdbcType=VARCHAR}, #{item.weightRange,jdbcType=VARCHAR}, 
+	      #{item.price,jdbcType=DECIMAL}, #{item.createTime,jdbcType=TIMESTAMP}, #{item.modifyTime,jdbcType=TIMESTAMP}, 
+	      #{item.delTime,jdbcType=TIMESTAMP}, #{item.addOperatorId,jdbcType=BIGINT}, #{item.modiOperatorId,jdbcType=BIGINT}, 
+	      #{item.delOperatorId,jdbcType=BIGINT}, #{item.status,jdbcType=TINYINT}, #{item.company,jdbcType=VARCHAR}
+	      )
+    </foreach>
   </insert>
   <insert id="insertSelective" parameterType="com.app.ymsq.model.saller.DeliverPrice" >
     insert into ymsq_deliver_price
@@ -171,6 +191,9 @@
       <if test="status != null" >
         status,
       </if>
+      <if test="company != null" >
+        company,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -214,6 +237,9 @@
       </if>
       <if test="status != null" >
         #{status,jdbcType=TINYINT},
+      </if>
+      <if test="company != null" >
+        #{company,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -268,6 +294,9 @@
       <if test="record.status != null" >
         status = #{record.status,jdbcType=TINYINT},
       </if>
+      <if test="record.company != null" >
+        company = #{record.company,jdbcType=VARCHAR},
+      </if>
     </set>
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
@@ -288,7 +317,8 @@
       add_operator_id = #{record.addOperatorId,jdbcType=BIGINT},
       modi_operator_id = #{record.modiOperatorId,jdbcType=BIGINT},
       del_operator_id = #{record.delOperatorId,jdbcType=BIGINT},
-      status = #{record.status,jdbcType=TINYINT}
+      status = #{record.status,jdbcType=TINYINT},
+      company = #{record.company,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -335,6 +365,9 @@
       <if test="status != null" >
         status = #{status,jdbcType=TINYINT},
       </if>
+      <if test="company != null" >
+        company = #{company,jdbcType=VARCHAR},
+      </if>
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
@@ -352,7 +385,8 @@
       add_operator_id = #{addOperatorId,jdbcType=BIGINT},
       modi_operator_id = #{modiOperatorId,jdbcType=BIGINT},
       del_operator_id = #{delOperatorId,jdbcType=BIGINT},
-      status = #{status,jdbcType=TINYINT}
+      status = #{status,jdbcType=TINYINT},
+      company = #{company,jdbcType=VARCHAR}
     where id = #{id,jdbcType=BIGINT}
   </update>
 </mapper>

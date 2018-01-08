@@ -27,4 +27,6 @@ public interface DeliverPriceDao {
     int updateByPrimaryKeySelective(DeliverPrice record);
 
     int updateByPrimaryKey(DeliverPrice record);
+
+	int addBatch(List<DeliverPrice> list);
 }

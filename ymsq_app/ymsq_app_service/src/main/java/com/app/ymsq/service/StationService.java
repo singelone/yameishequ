@@ -1,6 +1,9 @@
 package com.app.ymsq.service;
 
+import java.util.List;
+
 import com.app.ymsq.dto.saller.StationUserDTO;
+import com.app.ymsq.model.saller.DeliverPrice;
 import com.app.ymsq.model.saller.Saller;
 
 /**
@@ -18,5 +21,5 @@ public interface StationService {
 	 */
 	Saller getStation(StationUserDTO dto) throws Exception;
 
-	
+	Boolean sentPriceAdd(List<DeliverPrice> list)throws Exception;
 }
