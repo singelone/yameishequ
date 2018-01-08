@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="ymsq_app_service_impl:war">
+    <output-path>$PROJECT_DIR$/ymsq_app/ymsq_app_service_impl/target</output-path>
+    <root id="archive" name="ymsq_app_service_impl.war">
+      <element id="artifact" artifact-name="ymsq_app_service_impl:war exploded" />
+    </root>
+  </artifact>
+</component>

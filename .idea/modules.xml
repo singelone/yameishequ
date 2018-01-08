@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/ymsq_app/ymsq_app.iml" filepath="$PROJECT_DIR$/ymsq_app/ymsq_app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ymsq_app/ymsq_app_dao/ymsq_app_dao.iml" filepath="$PROJECT_DIR$/ymsq_app/ymsq_app_dao/ymsq_app_dao.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ymsq_app/ymsq_app_model/ymsq_app_model.iml" filepath="$PROJECT_DIR$/ymsq_app/ymsq_app_model/ymsq_app_model.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ymsq_app/ymsq_app_service/ymsq_app_service.iml" filepath="$PROJECT_DIR$/ymsq_app/ymsq_app_service/ymsq_app_service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ymsq_app/ymsq_app_service_impl/ymsq_app_service_impl.iml" filepath="$PROJECT_DIR$/ymsq_app/ymsq_app_service_impl/ymsq_app_service_impl.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ymsq_app/ymsq_app_web/ymsq_app_web.iml" filepath="$PROJECT_DIR$/ymsq_app/ymsq_app_web/ymsq_app_web.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ymsq_common/ymsq_common.iml" filepath="$PROJECT_DIR$/ymsq_common/ymsq_common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ymsq_parent.iml" filepath="$PROJECT_DIR$/ymsq_parent.iml" />
+    </modules>
+  </component>
+</project>
