@@ -20,7 +20,7 @@ import io.swagger.annotations.ApiOperation;
 @RequestMapping("/app/yamei/express/saller")
 public class SallerController {
 
-private static Logger logger = LogManager.getLogger(MerchantStationController.class);
+	private static Logger logger = LogManager.getLogger(SallerController.class);
 	
 	private BaseResp baseResp = new BaseResp<>(ErrCode.SUCCESS,"success");
 
