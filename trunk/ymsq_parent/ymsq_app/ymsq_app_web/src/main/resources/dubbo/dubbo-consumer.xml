@@ -26,10 +26,13 @@
 	<dubbo:reference interface="com.app.ymsq.service.UserService"
 		id="userServiceImpl" check="false" version="1.0.0" group="student-min">
 	</dubbo:reference>
-	<dubbo:reference interface="com.app.ymsq.service.EnjoyGoodsService"
-					 id="enjoyGoodsServiceImpl" check="false" version="1.0.0" group="student-min">
+	<dubbo:reference interface="com.app.ymsq.service.GoodsService"
+					 id="goodsServiceImpl" check="false" version="1.0.0" group="student-min">
 	</dubbo:reference>
 	<dubbo:reference interface="com.app.ymsq.service.CommentService"
 					 id="commentServiceImpl" check="false" version="1.0.0" group="student-min">
+	</dubbo:reference>
+	<dubbo:reference interface="com.app.ymsq.service.StationService"
+					 id="stationServiceImpl" check="false" version="1.0.0" group="student-min">
 	</dubbo:reference>
 </beans>

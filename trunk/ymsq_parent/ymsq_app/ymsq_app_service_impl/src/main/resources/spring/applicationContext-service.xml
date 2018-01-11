@@ -47,8 +47,10 @@
 				   group="student-min" version="1.0.0" timeout="30000" />
     <dubbo:service interface="com.app.ymsq.service.StationService" ref="stationServiceImpl"
    				   group="student-min" version="1.0.0" timeout="30000" />
-	<dubbo:service interface="com.app.ymsq.service.EnjoyGoodsService" ref="enjoyGoodsServiceImpl"
+	<dubbo:service interface="com.app.ymsq.service.GoodsService" ref="goodsServiceImpl"
 				   group="student-min" version="1.0.0" timeout="30000" />
 	<dubbo:service interface="com.app.ymsq.service.CommentService" ref="commentServiceImpl"
+				   group="student-min" version="1.0.0" timeout="30000" />
+	<dubbo:service interface="com.app.ymsq.service.StationService" ref="stationServiceImpl"
 				   group="student-min" version="1.0.0" timeout="30000" />
 </beans>

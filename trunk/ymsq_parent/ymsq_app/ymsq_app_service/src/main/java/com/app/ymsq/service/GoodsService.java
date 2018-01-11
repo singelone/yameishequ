@@ -4,8 +4,10 @@ import com.app.ymsq.model.goods.Goods;
 
 import java.util.List;
 
-public interface EnjoyGoodsService {
-    List<Goods> getGoods (Goods goods);
+public interface GoodsService {
+    List<Goods> getEnjoinGoods (Goods goods);
 
     Goods getGoodsByPrimaryKey(Goods goods);
+
+    int addGoods(Goods goods);
 }

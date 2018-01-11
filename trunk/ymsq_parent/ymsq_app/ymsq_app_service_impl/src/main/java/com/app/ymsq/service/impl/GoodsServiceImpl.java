@@ -4,21 +4,21 @@ import com.alibaba.dubbo.common.utils.StringUtils;
 import com.app.ymsq.dao.goods.GoodsDao;
 import com.app.ymsq.model.goods.Goods;
 import com.app.ymsq.model.goods.GoodsQuery;
-import com.app.ymsq.service.EnjoyGoodsService;
+import com.app.ymsq.service.GoodsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-public class EnjoyGoodsServiceImpl implements EnjoyGoodsService {
+public class GoodsServiceImpl implements GoodsService {
 
     @Autowired
     private GoodsDao goodsDao;
 
 
     @Override
-    public List<Goods> getGoods(Goods goods) { GoodsQuery example = new GoodsQuery();
+    public List<Goods> getEnjoinGoods(Goods goods) { GoodsQuery example = new GoodsQuery();
         GoodsQuery.Criteria criteria = example.createCriteria();
         if (null != goods.getGoodsCategory())
             criteria.andGoodsCategoryEqualTo(goods.getGoodsCategory());
@@ -46,5 +46,14 @@ public class EnjoyGoodsServiceImpl implements EnjoyGoodsService {
         if (null == goodsSelect)
             return null;
         return goodsSelect;
+    }
+
+    @Override
+    public int addGoods(Goods goods) {
+        if (null == goods) {
+            return 0;
+        } else{
+            return goodsDao.insertSelective(goods);
+        }
     }
 }

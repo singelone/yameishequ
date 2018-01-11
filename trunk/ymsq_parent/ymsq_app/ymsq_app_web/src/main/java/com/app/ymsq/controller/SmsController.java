@@ -1,27 +1,22 @@
 package com.app.ymsq.controller;
 
-import java.util.Date;
-
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
-
 import com.app.ymsq.cache.SmsCodeCache;
 import com.app.ymsq.constant.BaseResp;
 import com.app.ymsq.constant.ErrCode;
 import com.app.ymsq.constant.SmsCodeBean;
-import com.app.ymsq.model.user.User;
 import com.app.ymsq.util.DateUtil;
 import com.app.ymsq.util.SmsUtil;
 import com.app.ymsq.util.StringUtil;
-
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import java.util.Date;
 
 @SuppressWarnings("unchecked")
 @Controller
@@ -44,7 +39,8 @@ public class SmsController {
 		
 		try {
 			SmsCodeBean smsCodeBean = SmsCodeCache.get(mobile);
-			
+			System.out.println();
+
 			if (smsCodeBean != null && smsCodeBean.getSendTimes() > 2) {
 				logger.warn("# sendSms() : out of sms_count");
 				return new BaseResp<>(ErrCode.FAILED,"该手机号今日发送次数已超");
