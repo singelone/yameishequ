@@ -88,6 +88,16 @@
 
 	<dependencyManagement>
 		<dependencies>
+			<dependency>
+				<groupId>com.aliyun</groupId>
+				<artifactId>aliyun-java-sdk-push</artifactId>
+				<version>3.8.0</version>
+			</dependency>
+			<dependency>
+				<groupId>com.aliyun</groupId>
+				<artifactId>aliyun-java-sdk-core</artifactId>
+				<version>3.2.5</version>
+			</dependency>
 			<!-- commons-io -->
 			<dependency>
 				<groupId>commons-fileupload</groupId>

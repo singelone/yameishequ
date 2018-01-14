@@ -3,7 +3,7 @@ package com.app.ymsq.controller;
 import com.app.ymsq.constant.BaseResp;
 import com.app.ymsq.constant.ErrCode;
 import com.app.ymsq.model.goods.Goods;
-import com.app.ymsq.service.GoodsService;
+import com.app.ymsq.service.EnjoyGoodsService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.apache.logging.log4j.LogManager;
@@ -19,14 +19,14 @@ import java.util.List;
 
 @SuppressWarnings("all")
 @Controller
-@Api(description = "商品服务接口")
+@Api(description = "共享服务接口")
 @RequestMapping("/app/yamei/enjoy")
-public class GoodsController {
+public class EnjoyGoodsController {
 
-    private static Logger logger = LogManager.getLogger(GoodsController.class);
+    private static Logger logger = LogManager.getLogger(EnjoyGoodsController.class);
 
     @Autowired
-    private GoodsService goodsService;
+    private EnjoyGoodsService enjoyGoodsService;
 
     private BaseResp baseResp = new BaseResp<>(ErrCode.SUCCESS,"success");
 
@@ -44,7 +44,7 @@ public class GoodsController {
             return new BaseResp<>(ErrCode.VALIDATE_FAILED,"goodsType is null");
         }
         try {
-            List<Goods> goodsList = goodsService.getEnjoinGoods(goods);
+            List<Goods> goodsList = enjoyGoodsService.getGoods(goods);
             if (CollectionUtils.isEmpty(goodsList))
                 baseResp.setResultNote("goodsList is null");
             baseResp.setDetail(goodsList);
@@ -61,7 +61,7 @@ public class GoodsController {
      * @return
      */
     @RequestMapping(value = "/getOneGoods",method = RequestMethod.POST)
-    @ApiOperation(value = "根据id获取一个商品", notes = "王波")
+    @ApiOperation(value = "获取一个共享商品", notes = "王波")
     @ResponseBody
     public BaseResp getOneGoods(Goods goods) {
         if (null == goods.getGoodsId()) {
@@ -69,7 +69,7 @@ public class GoodsController {
             return new BaseResp<>(ErrCode.VALIDATE_FAILED,"goodsId is null");
         }
         try {
-            Goods goodsByPrimaryKey = goodsService.getGoodsByPrimaryKey(goods);
+            Goods goodsByPrimaryKey = enjoyGoodsService.getGoodsByPrimaryKey(goods);
             if (null == goodsByPrimaryKey)
                 baseResp.setResultNote("goods is null");
             baseResp.setDetail(goodsByPrimaryKey);
@@ -81,7 +81,7 @@ public class GoodsController {
     }
 
     @RequestMapping(value = "/goodsSimilarList",method = RequestMethod.POST)
-    @ApiOperation(value = "推荐商品列表", notes = "王波")
+    @ApiOperation(value = "共享服务商品列表", notes = "王波")
     @ResponseBody
     public BaseResp goodsSimilarList(Goods goods) {
         if (null == goods.getGoodsType()) {
@@ -93,7 +93,7 @@ public class GoodsController {
             return new BaseResp<>(ErrCode.VALIDATE_FAILED,"goodsCategory is null");
         }
         try {
-            List<Goods> goodsList = goodsService.getEnjoinGoods(goods);
+            List<Goods> goodsList = enjoyGoodsService.getGoods(goods);
             if (CollectionUtils.isEmpty(goodsList))
                 baseResp.setResultNote("goodsList is null");
             baseResp.setDetail(goodsList);
@@ -103,55 +103,4 @@ public class GoodsController {
         }
         return baseResp;
     }
-
-    /**
-     * 超市商品列表
-     * @param goods
-     * @return
-     */
-    @RequestMapping(value = "/maketGoodsList",method = RequestMethod.POST)
-    @ApiOperation(value = "超市商品列表", notes = "王波")
-    @ResponseBody
-    public BaseResp maketGoodsList(Goods goods) {
-        if (null == goods.getGoodsType()) {
-            logger.warn("# getGoodsList() : goodsType is null");
-            return new BaseResp<>(ErrCode.VALIDATE_FAILED,"goodsType is null");
-        }
-        try {
-            List<Goods> goodsList = goodsService.getEnjoinGoods(goods);
-            if (CollectionUtils.isEmpty(goodsList))
-                baseResp.setResultNote("goodsList is null");
-            baseResp.setDetail(goodsList);
-        } catch (Exception e) {
-            logger.error("获取商品列表失败:{}",e);
-            baseResp = new BaseResp<>(ErrCode.FAILED,"获取商品列表失败");
-        }
-        return baseResp;
-    }
-
-    /**
-     * 超市商品发布
-     * @param goods
-     * @return
-     */
-    @RequestMapping(value = "/addMaketGoods",method = RequestMethod.POST)
-    @ApiOperation(value = "超市商品发布", notes = "王波")
-    @ResponseBody
-    public BaseResp addMaketGoods(Goods goods) {
-        if (null == goods) {
-            logger.warn("# goods : goods is null");
-            return new BaseResp<>(ErrCode.VALIDATE_FAILED,"goods is null");
-        }
-        try {
-             goodsService.addGoods(goods);
-            if (1 != goodsService.addGoods(goods))
-                baseResp.setResultNote("保存goods失败!");
-            baseResp.setResultNote("保存成功!");
-        } catch (Exception e) {
-            logger.error("获取商品列表失败:{}",e);
-            baseResp = new BaseResp<>(ErrCode.FAILED,"获取商品列表失败");
-        }
-        return baseResp;
-    }
-
 }

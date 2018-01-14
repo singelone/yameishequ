@@ -26,13 +26,12 @@ import java.util.List;
 public class MerchantStationController {
 
 	private static Logger logger = LogManager.getLogger(MerchantStationController.class);
-
-    @Autowired
-    private StationService stationService;
-
-    private BaseResp baseResp = new BaseResp<>(ErrCode.SUCCESS,"success");
-
-
+	
+	private BaseResp baseResp = new BaseResp<>(ErrCode.SUCCESS,"success");
+	
+	@Autowired
+	private StationService stationService;
+	
 	@Auth
 	@RequestMapping(value = "price/get/add", method = RequestMethod.GET)
 	@ApiOperation(value = "取件价格发布", notes = "王波")
